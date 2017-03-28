@@ -6,7 +6,7 @@ defmodule BankPlatform.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      version: "1.0.0-dev",
-     source_url: "https://github.com/wojtekmach/acme_bank",
+     source_url: "https://github.com/uivlis/acme_bank",
      name: "Acme Bank",
      docs: [source_ref: "HEAD", main: "main", assets: "docs", extras: ["docs/main.md"]],
      deps: deps(),

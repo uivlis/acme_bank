@@ -19,6 +19,20 @@ defmodule BankWeb.SessionController do
         render(conn, "new.html", customers: customers)
     end
   end
+  
+  def create_new(conn, %{"session" => %{"email" => email, "password" => password}}) do
+    case Auth.register(%{email: email, password: password}) do
+      {:ok, account} ->
+        customer = Bank.find_customer!(auth_account_id: account.id)
+
+        conn
+        |> put_session(:customer_id, customer.id)
+        |> redirect(to: "/")
+      {:error, _} ->
+        customers = Bank.customers()
+        render(conn, "new.html", customers: customers)
+    end
+  end
 
   def sign_in_as(conn, %{"username" => username}) do
 		customer = Bank.find_customer!(username: username)
